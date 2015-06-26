@@ -1,0 +1,7 @@
+---
+# tasks file for iptables
+
+- include: main-debian.yml
+  when: ansible_distribution == 'Debian'
+        and (ansible_distribution_major_version == '8'
+        or ansible_distribution_major_version == '7')

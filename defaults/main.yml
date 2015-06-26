@@ -1,0 +1,9 @@
+---
+# defaults file for iptables
+
+iptables_ssh_port: "22"
+
+iptables_input_ports:
+    - "80" 
+
+iptables_icmp_allowed: true

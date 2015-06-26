@@ -1,0 +1,26 @@
+---
+
+# https://wiki.debian.org/iptables
+
+# Install iptables
+- name: Install iptables
+  apt: name={{ item }} state=present
+  with_items:
+    - iptables
+    - iptables-persistent
+
+- name: Flush rules
+  shell: "iptables -F"
+
+- name: Flush rules
+  shell: "iptables -F -t nat"
+
+# Create /etc/iptables.up.rules
+- name: Copy iptables rules.
+  template: src=iptables.up.rules.j2 dest=/etc/iptables.up.rules owner=root group=root mode=0755
+
+- name: Restore rules
+  shell: "iptables-restore < /etc/iptables.up.rules"
+
+- name: Create boot script
+  template: src=iptables.j2 dest=/etc/network/if-pre-up.d/iptables owner=root group=root mode=755
