@@ -27,3 +27,10 @@ License
 -------
 
 MIT
+
+Notes
+-----
+
+Check if the script works:
+
+	sudo ifup --all -v
