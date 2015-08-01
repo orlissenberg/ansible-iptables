@@ -20,6 +20,14 @@
 -A INPUT -p udp --dport {{ port }} -j ACCEPT
 {% endfor %}
 
+{% for host in iptables_input_host_tcp_ports %}
+-A INPUT -p tcp -s {{ host.ip }} --dport {{ host.port }} -j ACCEPT
+{% endfor %}
+
+{% for host in iptables_input_host_udp_ports %}
+-A INPUT -p udp -s {{ host.ip }} --dport {{ host.port }} -j ACCEPT
+{% endfor %}
+
 # Allows SSH connections
 # The --dport number is the same as in /etc/ssh/
 -A INPUT -p tcp -m state --state NEW --dport {{ iptables_ssh_port }} -j ACCEPT
