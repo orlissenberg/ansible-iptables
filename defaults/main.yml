@@ -4,6 +4,8 @@
 iptables_ssh_port: "22"
 
 iptables_input_ports:
-    - "80" 
+    - "80"
+
+iptables_input_udp_ports: []
 
 iptables_icmp_allowed: true

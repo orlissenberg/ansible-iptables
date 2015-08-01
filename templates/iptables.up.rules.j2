@@ -11,16 +11,20 @@
 # You could modify this to only allow certain traffic
 -A OUTPUT -j ACCEPT
 
-# Allows HTTP and HTTPS connections from anywhere (the normal ports for websites)
+# Allows connections from anywhere (the normal ports for websites)
 {% for port in iptables_input_ports %}
 -A INPUT -p tcp --dport {{ port }} -j ACCEPT
 {% endfor %}
 
-# Allows SSH connections 
+{% for port in iptables_input_udp_ports %}
+-A INPUT -p udp --dport {{ port }} -j ACCEPT
+{% endfor %}
+
+# Allows SSH connections
 # The --dport number is the same as in /etc/ssh/
 -A INPUT -p tcp -m state --state NEW --dport {{ iptables_ssh_port }} -j ACCEPT
 
-# Now you should read up on iptables rules and consider whether ssh access 
+# Now you should read up on iptables rules and consider whether ssh access
 # for everyone is really desired. Most likely you will only allow access from certain IPs.
 
 # Allow ping

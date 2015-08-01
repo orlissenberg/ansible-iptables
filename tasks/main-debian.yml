@@ -2,9 +2,8 @@
 
 # https://wiki.debian.org/iptables
 
-# Install iptables
 - name: Install iptables
-  apt: name={{ item }} state=present
+  apt: name={{ item }} state=present update_cache=yes
   with_items:
     - iptables
     - iptables-persistent
