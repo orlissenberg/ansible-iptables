@@ -13,7 +13,10 @@ EOF
 # Create group_vars for the web servers
 mkdir -p ${TMP_DIR}/group_vars 2> /dev/null
 cat << EOF > ${TMP_DIR}/group_vars/webservers
-
+iptables_input_ports:
+    - "80"
+    - "7474"
+    - "7687"
 EOF
 
 # Create Ansible config
