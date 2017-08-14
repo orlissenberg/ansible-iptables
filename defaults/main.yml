@@ -13,3 +13,5 @@ iptables_input_host_tcp_ports: []
 iptables_input_host_udp_ports: []
 
 iptables_icmp_allowed: true
+
+iptables_docker_enabled: false
